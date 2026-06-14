@@ -1,0 +1,12 @@
+node_modules/
+dist/
+build/
+.env
+.env.local
+*.log
+uploads/*
+!uploads/.gitkeep
+coverage/
+.nyc_output/
+*.tsbuildinfo
+backend/public/

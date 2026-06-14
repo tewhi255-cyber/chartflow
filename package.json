@@ -1,0 +1,13 @@
+{
+  "name": "chartflow",
+  "version": "1.0.0",
+  "private": true,
+  "description": "ChartFlow Collaboration Platform",
+  "scripts": {
+    "build:backend": "cd backend && npm run build",
+    "build:frontend": "cd frontend && npm run build",
+    "build": "npm run build:backend && npm run build:frontend",
+    "start": "cd backend && npm start",
+    "postinstall": "cd backend && npm install --ignore-scripts"
+  }
+}
