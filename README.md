@@ -1,3 +1,13 @@
+---
+title: ChartFlow
+emoji: 🚀
+colorFrom: blue
+colorTo: indigo
+sdk: docker
+app_port: 7860
+pinned: false
+---
+
 # ChartFlow
 
 **Modern Web-Based Collaboration & Communication Platform**
