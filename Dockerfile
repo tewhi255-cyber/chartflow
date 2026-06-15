@@ -1,20 +1,22 @@
 FROM node:20-alpine
 
-RUN adduser -D -u 1000 user
-USER user
-ENV HOME=/home/user
-ENV PATH="$HOME/.local/bin:$PATH"
 WORKDIR /app
 
-COPY --chown=user package*.json ./
-COPY --chown=user backend/package*.json backend/
-COPY --chown=user frontend/package*.json frontend/
+COPY package*.json ./
+COPY backend/package*.json backend/
+COPY frontend/package*.json frontend/
 
-RUN cd backend && npm install --ignore-scripts --no-audit --no-fund
+RUN npm install --ignore-scripts --no-audit --no-fund && \
+    cd backend && npm install --ignore-scripts --no-audit --no-fund && \
+    cd ../frontend && npm install --ignore-scripts --no-audit --no-fund
 
-COPY --chown=user . .
+COPY . .
 
-RUN cd backend && npm run build && cd ../frontend && npx vite build && mkdir -p ../backend/public && cp -r dist/* ../backend/public/
+RUN cd backend && npm run build && \
+    cd ../frontend && npx vite build && \
+    mkdir -p ../backend/public && \
+    cp -r dist/* ../backend/public/ && \
+    cd .. && rm -rf frontend node_modules
 
 ENV NODE_ENV=production
 ENV PORT=7860
